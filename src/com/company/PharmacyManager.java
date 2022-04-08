@@ -3,7 +3,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class PharmacyManager {
+public class PharmacyManager implements MainFunctions {
 
     public static ArrayList<Prescribe_medications> customers = new ArrayList<>();
     public static ArrayList<Category> categories = new ArrayList<>();
@@ -17,9 +17,9 @@ public class PharmacyManager {
         }
     }
 
-    public static Medication medSearch(String name){
-        Medication temp=null;
-        for (Medication i: medications
+    public static Restriction medSearch(String name){
+        Restriction temp=null;
+        for (Restriction i: medications
              ) {
             if (i.getMedName()==name){
                 System.out.println("A cure has been found!");
@@ -76,7 +76,7 @@ public class PharmacyManager {
         }while (!exit);
     }
 
-    public static void addCustomer(){
+    public void addCustomer(){
         boolean exit = false;
         do {
             System.out.println("Adding a new customer\n");
@@ -96,6 +96,12 @@ public class PharmacyManager {
             }
         }while (!exit);
     }
+
+    @Override
+    public void addMedication(String name) {
+
+    }
+
     public static void addMedication(){
         System.out.println("Adding a new medication\n");
         System.out.print("Name: ");
@@ -116,13 +122,19 @@ public class PharmacyManager {
         categories.get(id).medications.add(newMedication);
         System.out.println("Added successfully!");
     }
-    public static void addCategory(){
+    public void addCategory(){
         System.out.println("Adding a new medication\n");
         System.out.print("Name: ");
         String name = in.next();
         Category newCat = new Category(name);
         categories.add(newCat);
     }
+
+    @Override
+    public void medSearch() {
+
+    }
+
     public static void allCustomers(){
         for (Prescribe_medications i: customers
              ) {
@@ -130,7 +142,7 @@ public class PharmacyManager {
         }
     }
 
-    public static void purchaseMed(){
+    public void purchaseMed(){
         allCustomers();
         System.out.print("Customer ID:");
         int customerID=in.nextInt();
@@ -141,8 +153,20 @@ public class PharmacyManager {
             System.out.println("Name: ");
             String name = in.next();
             medSearch(name).medInf();
-            current.getPurchasedMed().add(medSearch(name));
-            System.out.println("Added successfully!");
+            if (medSearch(name).isAgeRestriction()&&current.ageVerify()&&!medSearch(name).isPrescribeRestriction()){
+                current.getPurchasedMed().add(medSearch(name));
+                System.out.println("Added successful!");
+            }
+            else if (!medSearch(name).isAgeRestriction()&&!medSearch(name).isPrescribeRestriction()){
+                current.getPurchasedMed().add(medSearch(name));
+                System.out.println("Added successful!");
+            }
+            else if (!medSearch(name).isAgeRestriction()&&!current.ageVerify()){
+                current.getPurchasedMed().add(medSearch(name));
+                System.out.println("Added successful!");
+            }
+
+
         }
         if (temp.equals("2")){
             allMed();
