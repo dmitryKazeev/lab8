@@ -6,10 +6,16 @@ public class Customer implements Age_verify {
     private int id,age;
     private String name;
     public ArrayList<Medication> purchasedMed = new ArrayList<>();
+    private static int idCount=0;
 
 
-    public Customer(int id, int age, String name) {
-        this.id = id;
+    public Customer(int age,String name) {
+        this.id = idCount++;
+        this.age = age;
+        this.name = name;
+    }
+    public Customer(int age, int i, String name) {
+        this.id = idCount++;
         this.age = age;
         this.name = name;
     }

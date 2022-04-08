@@ -8,4 +8,7 @@ public class Prescribe_medications extends Customer {
     public Prescribe_medications(int id, int age, String name) {
         super(id, age, name);
     }
+    public Prescribe_medications(int age, String name) {
+        super(age, name);
+    }
 }
