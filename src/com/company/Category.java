@@ -17,4 +17,8 @@ public class Category {
         this.id_cat = idCount++;
         this.categoryName = categoryName;
     }
+
+    public void catInf(){
+        System.out.printf("id: %d\tName: %s\n\n",id_cat,categoryName);
+    }
 }

@@ -11,4 +11,8 @@ public class Prescribe_medications extends Customer {
     public Prescribe_medications(int age, String name) {
         super(age, name);
     }
+
+    public void customerInf(){
+        System.out.printf("ID: %d\tName: %s\tAge: %d\n\n",getId(),getName(),getAge());
+    }
 }

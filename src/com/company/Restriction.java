@@ -8,8 +8,10 @@ public class Restriction extends Medication {
     protected Restriction(int id_med, String name, double price) {
         super(id_med, name, price);
     }
-    protected Restriction(String name, double price) {
+    protected Restriction(String name, double price, boolean ageRestriction, boolean prescribeRestriction) {
         super(name, price);
+        ageRestriction=this.ageRestriction;
+        prescribeRestriction=this.prescribeRestriction;
     }
 
 
@@ -17,4 +19,22 @@ public class Restriction extends Medication {
     public boolean check_restriction() {
         return false;
     }
+
+    public boolean isAgeRestriction() {
+        return ageRestriction;
+    }
+
+    public void setAgeRestriction(boolean ageRestriction) {
+        this.ageRestriction = ageRestriction;
+    }
+
+    public boolean isPrescribeRestriction() {
+        return prescribeRestriction;
+    }
+
+    public void setPrescribeRestriction(boolean prescribeRestriction) {
+        this.prescribeRestriction = prescribeRestriction;
+    }
+
+
 }

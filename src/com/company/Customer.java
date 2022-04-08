@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Customer implements Age_verify {
     private int id,age;
     private String name;
-    public ArrayList<Medication> purchasedMed = new ArrayList<>();
+    private ArrayList<Medication> purchasedMed = new ArrayList<>();
     private static int idCount=0;
 
 
@@ -47,5 +47,14 @@ public class Customer implements Age_verify {
 
     public boolean ageVerify(){
         return age >= 18;
+    }
+
+
+    public ArrayList<Medication> getPurchasedMed() {
+        return purchasedMed;
+    }
+
+    public void setPurchasedMed(ArrayList<Medication> purchasedMed) {
+        this.purchasedMed = purchasedMed;
     }
 }
