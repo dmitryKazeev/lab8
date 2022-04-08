@@ -30,6 +30,17 @@ public class PharmacyManager {
         return temp;
     }
 
+    public static boolean setExit(){
+        String temp=in.next();
+        if(temp.equals("y")){
+            return false;
+        }
+        if (temp.equals("n")){
+            return true;
+        }
+        return false;
+    }
+
 
     public static void prescriptionAdd(Prescribe_medications current){
         boolean exit=false;
@@ -41,9 +52,21 @@ public class PharmacyManager {
                 String name= in.next();
                 medSearch(name).medInf();
                 current.prescribe_med.add(medSearch(name));
+                System.out.println("Added successfully!");
+                System.out.println("Add more? y-yes n-no");
+                exit=setExit();
+            }
+            if (temp.equals("2")){
+                allMed();
+                System.out.println("Enter the Medication ID: ");
+                int id = in.nextInt();
+                medications.get(id).medInf();
+                current.prescribe_med.add(medications.get(id));
+                System.out.println("Added successfully!");
+                System.out.println("Add more? y-yes n-no");
+                exit=setExit();
             }
         }while (!exit);
-
     }
 
     public static void addCustomer(){
@@ -54,15 +77,16 @@ public class PharmacyManager {
             int age = in.nextInt();
             System.out.print("Name: ");
             String name = in.next();
-            Customer current = new Prescribe_medications(age,name);
+            Prescribe_medications current = new Prescribe_medications(age,name);
             customers.add(current);
             System.out.println("Are there any prescriptions written by a doctor? y-yes n-no");
             String temp = in.next();
             if(temp.equals("y")){
-
-
+                prescriptionAdd(current);
             }
-
+            if (temp.equals("n")){
+                exit=true;
+            }
         }while (!exit);
     }
 }
